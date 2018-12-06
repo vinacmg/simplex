@@ -1,0 +1,27 @@
+<div class="vertical-center">
+  <div class="d-flex justify-content-center align-items-center container my-auto">
+    <div *ngIf="!resultado.ilimitada;else fail" class="">
+      <h5>Resultado</h5>
+      <h3>A solução ótima é z = {{ resultado.z }}!</h3>
+      <h4 *ngFor="let x of keys">{{ x }} = {{ resultado['x'][x] }} <br></h4>
+      <div class="d-flex flex-row-reverse">
+        <button class="btn btn-lg btn-primary" (click)="reset()">
+          Início
+        </button>
+      </div>
+    </div>
+    <ng-template #fail class="">
+      <div>
+        <h5>Resultado</h5>
+        <h3>Não existe solução ótima!</h3>
+        <h4>Solução ilimitada...</h4>
+        <div class="d-flex flex-row-reverse">
+          <button class="btn btn-lg btn-primary" (click)="reset()">
+            Início
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <br>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="vertical-center">
+  <div class="d-flex justify-content-center align-items-center container my-auto">
+    <form [formGroup]="paramsForm" (ngSubmit)="submitForm()">
+      <div class="form-group form-inline">
+        <p>Qual é o objetivo da função?  
+          <select class="form-control" formControlName="objetivo">
+            <option value="max">Maximizar</option>
+            <option value="min">Minimizar</option>
+          </select>
+        </p>
+      </div>
+      <div class="form-group form-inline">
+        <p>Função:</p>
+        <div *ngFor="let index of var_index">
+          <p>
+            <input class="form-control mx-2" type="text" size="2" [formControlName]="'c' + index">x{{ index }} 
+            <span *ngIf="index != var_index.length">+</span> 
+          </p>
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <h5>Restrições</h5>
+      </div>
+      <div class="form-group" *ngFor="let rest of rest_index">
+        <div class="form-inline">
+          <div *ngFor="let index of var_index">
+            <h5>
+              <input class="form-control mx-2" type="text" size="1" [formControlName]="'A'+ rest + index">x{{ index }} 
+              <span *ngIf="index != var_index.length">+</span> 
+            </h5>
+          </div>
+          <h5 class="ml-2">
+            <=
+            <input class="form-control mx-2" type="text" size="1" [formControlName]="'b' + rest"> 
+          </h5>
+        </div>
+      </div>
+      <div class="form-group d-flex flex-row-reverse">
+        <button [disabled]="!paramsForm.valid" class="btn btn-lg btn-primary" type="submit">
+          Resolver
+        </button>
+      </div>
+      <div class="form-group">
+        <p>onde x >= 0 ...</p> 
+      </div>
+    </form>
+  </div>
+</div>
